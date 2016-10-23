@@ -1,11 +1,14 @@
 package com.liveStream;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import com.kaltura.client.KalturaApiException;
 import com.kaltura.client.KalturaClient;
 import com.kaltura.client.KalturaConfiguration;
 import com.kaltura.client.enums.KalturaSessionType;
+import com.kaltura.client.types.KalturaLiveStreamConfiguration;
+import com.kaltura.client.types.KalturaLiveStreamEntry;
 import com.kaltura.client.types.KalturaMediaEntry;
 import com.kaltura.client.types.KalturaMediaListResponse;
 import com.kaltura.client.types.KalturaMetadataListResponse;
@@ -65,7 +68,7 @@ public class KalturaSessionGen {
 	
 	static void list() throws KalturaApiException {
 
-		/*KalturaMediaListResponse list =  getClient().getMediaService().list();
+		KalturaMediaListResponse list =  getClient().getMediaService().list();
 		if (list.totalCount > 0) {
 			System.out.println("The account contains " + list.totalCount + " entries.");
 			for (KalturaMediaEntry entry : list.objects) {
@@ -74,8 +77,34 @@ public class KalturaSessionGen {
 		} else {
 			System.out.println("This account doesn't have any entries in it.");
 		}
-	*/
-		String entryId="1_6a0qjqkg";
+	
+		
+		String entryId="0_oosnpuph";
+		/*for live entry
+		KalturaLiveStreamEntry liveEntry=getClient().getLiveStreamService().get(entryId);
+		String dataUrl=liveEntry.streamUrl;
+		
+		ArrayList urlObj=getClient().getLiveStreamService().get(entryId).liveStreamConfigurations;
+		
+		System.out.println("Stream url:");
+		
+		KalturaLiveStreamConfiguration obj[]=new KalturaLiveStreamConfiguration[urlObj.size()];
+		
+		System.out.println("==> For Loop Example.");
+		for (int i = 0; i < urlObj.size(); i++) {
+			 obj[i]=(KalturaLiveStreamConfiguration) urlObj.get(i);
+			
+			
+			
+		}
+ 
+		System.out.println(	obj[1].streamName+" "+obj[1].publishUrl);
+		
+		
+		System.out.println(liveEntry.name);
+		*/
+		 entryId="1_6a0qjqkg";
+		
 		KalturaMediaEntry mediaEntry = getClient().getMediaService().get(entryId);
 		System.out.print(mediaEntry.name);
 		
