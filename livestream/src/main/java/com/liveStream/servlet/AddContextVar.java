@@ -58,6 +58,14 @@ public class AddContextVar extends HttpServlet {
 		
 		System.out.println(context.getAttribute("taggedVideo"));
 		System.out.println(context.getAttribute("videoduration"));
+		
+		try {
+			Thread.sleep(videoDuration*1000);
+			removecontextattr(context);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	
 	}
  
@@ -68,6 +76,16 @@ public class AddContextVar extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+	}
+	
+	public static  void removecontextattr (ServletContext context){
+		
+	context.removeAttribute("taggedVideo");
+	System.out.println("hi"+context.getAttribute("taggedVideo"));
+	context.removeAttribute("videoduration");
+
+	
+	
 	}
 
 }
