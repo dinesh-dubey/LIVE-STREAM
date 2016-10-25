@@ -1,6 +1,8 @@
 package com.liveStream.servlet;
 
 import java.io.IOException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -16,6 +18,7 @@ import com.kaltura.client.types.KalturaMediaInfo;
 import com.kaltura.client.types.KalturaMediaListResponse;
 import com.kaltura.client.types.KalturaPlayableEntry;
 import com.liveStream.KalturaSessionGen;
+import com.liveStream.WorkerThread;
 
 /**
  * Servlet implementation class AddContextVar
@@ -42,6 +45,8 @@ public class AddContextVar extends HttpServlet {
 		
 		String taggedVideo=request.getParameter("taggedVideo");
 		
+	long pushtime	=System.currentTimeMillis();
+	
 		
 		KalturaMediaEntry km=null;
 		try {
@@ -55,9 +60,12 @@ public class AddContextVar extends HttpServlet {
 		ServletContext context=getServletContext();  
 		context.setAttribute("taggedVideo", taggedVideo);
 		context.setAttribute("videoduration", videoDuration);
+		context.setAttribute("pushtime", pushtime);
 		
 		System.out.println(context.getAttribute("taggedVideo"));
 		System.out.println(context.getAttribute("videoduration"));
+		
+		
 		
 		try {
 			Thread.sleep(videoDuration*1000);
@@ -83,6 +91,7 @@ public class AddContextVar extends HttpServlet {
 	context.removeAttribute("taggedVideo");
 	System.out.println("hi"+context.getAttribute("taggedVideo"));
 	context.removeAttribute("videoduration");
+	context.removeAttribute("pushtime");
 
 	
 	

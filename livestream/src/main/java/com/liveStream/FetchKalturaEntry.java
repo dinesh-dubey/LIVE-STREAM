@@ -18,7 +18,7 @@ public class FetchKalturaEntry extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 		String entryId = "";
 		int time=0;
-		
+	long loginTime=	System.currentTimeMillis();
 		ServletContext context = getServletContext();
 		
 		if (context.getAttribute("videoduration") != null) {
@@ -31,10 +31,14 @@ public class FetchKalturaEntry extends HttpServlet {
 			context.setAttribute("taggedVideo","1_t2ssbfzu");
 			entryId = context.getAttribute("taggedVideo").toString();
 		}*/
+		
+		long pushTime=(long) context.getAttribute("pushtime");
+		long timediff=(pushTime-loginTime)/1000;
 		JSONObject jsonObject = new JSONObject();
 		try {
 			jsonObject.put("entryId", entryId);
 			jsonObject.put("time", time);
+			jsonObject.put("timediff", timediff);
 			
 			response.setContentType("application/json");
 			response.setCharacterEncoding("UTF-8");
