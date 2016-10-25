@@ -32,14 +32,17 @@ public class FetchKalturaEntry extends HttpServlet {
 			entryId = context.getAttribute("taggedVideo").toString();
 		}*/
 		
-		long pushTime=(long) context.getAttribute("pushtime");
-		long timediff=(pushTime-loginTime)/1000;
+		
 		JSONObject jsonObject = new JSONObject();
 		try {
 			jsonObject.put("entryId", entryId);
 			jsonObject.put("time", time);
-			jsonObject.put("timediff", timediff);
 			
+			if(null !=context.getAttribute("pushtime")){
+				long pushTime=(long) context.getAttribute("pushtime");
+				long timediff=(pushTime-loginTime)/1000;
+				jsonObject.put("timediff", timediff);
+				}
 			response.setContentType("application/json");
 			response.setCharacterEncoding("UTF-8");
 			response.getWriter().write(jsonObject.toString());
