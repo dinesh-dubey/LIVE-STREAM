@@ -17,16 +17,25 @@ public class FetchKalturaEntry extends HttpServlet {
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		String entryId = "";
+		int time=0;
+		
 		ServletContext context = getServletContext();
-		if (context.getAttribute("kalturaEntryId") != null) {
-			entryId = context.getAttribute("kalturaEntryId").toString();
-		}else{
-			context.setAttribute("kalturaEntryId","1_t2ssbfzu");
-			entryId = context.getAttribute("kalturaEntryId").toString();
+		
+		if (context.getAttribute("videoduration") != null) {
+			 time = Integer.parseInt(context.getAttribute("videoduration").toString());
 		}
+		
+		if (context.getAttribute("taggedVideo") != null) {
+			entryId = context.getAttribute("taggedVideo").toString();
+		}/*else{
+			context.setAttribute("taggedVideo","1_t2ssbfzu");
+			entryId = context.getAttribute("taggedVideo").toString();
+		}*/
 		JSONObject jsonObject = new JSONObject();
 		try {
 			jsonObject.put("entryId", entryId);
+			jsonObject.put("time", time);
+			
 			response.setContentType("application/json");
 			response.setCharacterEncoding("UTF-8");
 			response.getWriter().write(jsonObject.toString());

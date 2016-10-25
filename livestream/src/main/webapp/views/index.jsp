@@ -22,8 +22,7 @@
  <span class="pad10 fl livetext"><span class="redDot"></span>Live</span></div></div>    
 <div id="gallery" class="playVid pad20 clear" >
 <div id="livestreamVideo">
-   <script src="https://cdnapisec.kaltura.com/p/2199811/sp/219981100/embedIframeJs/uiconf_id/36838491/partner_id/2199811?autoembed=true&entry_id=0_uh1npfmj&playerId=kaltura_player_1477208074&cache_st=1477208074&width=560&height=395&flashvars[streamerType]=auto"></script>
-</div>	
+<script src="https://cdnapisec.kaltura.com/p/2199811/sp/219981100/embedIframeJs/uiconf_id/36776161/partner_id/2199811?autoembed=true&entry_id=0_uh1npfmj&playerId=kaltura_player_1477377967&cache_st=1477377967&width=560&height=315&flashvars[streamerType]=auto"></script></div>	
 <div id="tavantAdsVideo">
   
 </div>
@@ -119,7 +118,7 @@
     src="<%=request.getContextPath()%>/resources/images/thumbs/thumb3.jpg"
     data-image="<%=request.getContextPath()%>/resources/images/big/image3.jpg"
     data-description="Preview Image 11 Description">
-    <button type="button" onclick="invokeTavantAds('1_t2ssbfzu')">Inject Tavant Ads</button>
+    
 </div>
 
 <script src="<%=request.getContextPath()%>/resources/Js/custom.js"></script>
