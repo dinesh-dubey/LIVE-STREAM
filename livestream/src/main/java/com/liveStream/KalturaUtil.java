@@ -22,7 +22,7 @@ public class KalturaUtil {
 
 	static Logger log = Logger.getLogger(KalturaUtil.class.getName());
 
-	static LoadProperty propertyLoad=null;
+	public static LoadProperty propertyLoad=null;
 	
 	public KalturaUtil()
 	
