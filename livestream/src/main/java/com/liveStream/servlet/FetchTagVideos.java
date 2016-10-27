@@ -58,6 +58,8 @@ public class FetchTagVideos extends HttpServlet {
 		 
 		
 		try {
+			
+			
 			list = KalturaSessionGen.getClient().getMediaService().list();
 			if (list.totalCount > 0) {
 				System.out.println("The account contains " + list.totalCount + " entries.");

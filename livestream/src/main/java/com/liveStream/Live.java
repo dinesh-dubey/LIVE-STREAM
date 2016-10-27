@@ -7,13 +7,18 @@ import java.net.HttpURLConnection;
 //import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.swing.text.html.HTMLDocument.Iterator;
 
 import com.kaltura.client.KalturaApiException;
+import com.kaltura.client.types.KalturaBaseEntry;
+import com.kaltura.client.types.KalturaMediaEntry;
 
 //import org.apache.commons.httpclient.util.HttpURLConnection;
 
@@ -52,61 +57,99 @@ public class Live extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 
+		System.out.println("--------------doPost--------------------");
+
+		//String entryId = "1_6a0qjqkg";
+		// String entryId="0_oosnpuph";
+		
+		System.out.println("hi");
+
+		KalturaSessionGen ksg = new KalturaSessionGen();
+		
+		LoadProperty property=	new LoadProperty();
 		try {
-			System.out.println("--------------doPost--------------------");
-			
-			String entryId="1_6a0qjqkg";
-		//	String entryId="0_oosnpuph";
-			
-			System.out.println("hi");
-			
-KalturaSessionGen ksg=new KalturaSessionGen();
 
-String ks=ksg.getClient().getSessionId();
-			URL url = new URL(
-					"http://www.kaltura.com/api_v3/index.php?service=media&action=get&entryId="+entryId+"&ks="+ks);
-			
-			System.out.print(url);
-			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-			conn.setRequestMethod("GET");
-			conn.setRequestProperty("Accept", "application/json");
+			KalturaUtil util = new KalturaUtil();
 
-			if (conn.getResponseCode() != 200) {
-				throw new RuntimeException("Failed : HTTP error code : "
-						+ conn.getResponseCode());
+			ArrayList<KalturaBaseEntry> list = util.retrieveMediaMetaData();
+			java.util.Iterator<KalturaBaseEntry> i = list.iterator();
+			String media_entry_name = null;
+			String media_entry_thumbnail = null;
+			int media_entry_duration;
+			String media_entry_URL = null;
+ArrayList<HashMap<String, String>> list_Vod=new ArrayList();
+			HashMap hashMap_Vod=null;
+			HashMap hashMap_live=null;
+			while (i.hasNext()) {
+				KalturaMediaEntry media_entry = (KalturaMediaEntry) i.next();
+				
+				hashMap_Vod	=new HashMap();
+				media_entry_name = media_entry.name;
+				media_entry_thumbnail = media_entry.thumbnailUrl;
+				media_entry_duration = media_entry.duration;
+				media_entry_URL = media_entry.dataUrl;
+			
+			hashMap_Vod.put("media_entry_URL", media_entry_URL);
+			
+			hashMap_Vod.put("media_entry_name", media_entry_name);
+			hashMap_Vod.put("media_entry_thumbnail", media_entry_thumbnail);
+			hashMap_Vod.put("media_entry_duration", media_entry_duration);
+			hashMap_Vod.put("media_entryId", media_entry.id);
+			
+			list_Vod.add(hashMap_Vod);
+			
+			
+
+				
 			}
-
-			BufferedReader br = new BufferedReader(new InputStreamReader(
-					(conn.getInputStream())));
-
-			String output;
-			System.out.println("Output from Server .... \n");
-			while ((output = br.readLine()) != null) {
-				System.out.println(output);
-			}
-
-			conn.disconnect();
 			
 			
-			ksg.list();
-		//	response.sendRedirect("player.html"); 
-			request.getRequestDispatcher("/views/index.jsp").forward(request, response);
+			hashMap_live=new HashMap<>();
+			hashMap_live=util.retrieveLiveStreamMetaData();
 
-		} catch (MalformedURLException e) {
+request.setAttribute("hashMap_live", hashMap_live);
+
+String a=property.getProperty("SCRIPT_SOURCE");
+request.setAttribute("player_id",property.getProperty("PLAYER_ID") );
+
+request.setAttribute("partner_id", property.getProperty("PARTNER_ID"));
+
+request.setAttribute("script_source", property.getProperty("SCRIPT_SOURCE"));
 
 
-		} catch (IOException e) {
 
-			e.printStackTrace();
+request.setAttribute("ui_conf_id", property.getProperty("UI_CONF_ID"));
 
-		} catch (KalturaApiException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+
+
+
+
+
+
+		/*	util.retrievePlaylistMetaData();*/
+
+			// request.getRequestDispatcher("/pages/index.html?mediaUrl=media_entry_URL").forward(request,
+			// response);
+
+
+if(request.getAttribute("list_vod")!=null)
+	list_Vod=(ArrayList<HashMap<String, String>>) request.getAttribute("list_vod");
+	
+	
+	
+request.setAttribute("list_vod", list_Vod);
+		}
+
+		/*
+		 * catch (MalformedURLException e) {
+		 * 
+		 * 
+		 * }
+		 */
+		catch (Exception e) {
+
 		}
 
 	}
-	
-	
-	
 
 }

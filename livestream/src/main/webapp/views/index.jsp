@@ -3,124 +3,199 @@
 <title>Tavant Engage</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <head>
-    <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/resources/css/ug-theme-default.css"> 
-    <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/resources/css/unite-gallery.css"> 
-    <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/resources/css/style.css">
-    <link href="http://fonts.googleapis.com/css?family=Raleway" rel="stylesheet" type="text/css">
-    <script src="<%=request.getContextPath()%>/resources/Libraries/jquery.min.v3.1.1.js"></script>
-    <script src="<%=request.getContextPath()%>/resources/Libraries/ug-theme-default.js"></script>   
-    <script src="<%=request.getContextPath()%>/resources/Libraries/unitegallery.min.js"></script>   
+<jsp:include page="/Live" />
+
+<link rel="stylesheet" type="text/css"
+	href="<%=request.getContextPath()%>/resources/css/lightslider.css">
+
+<link rel="stylesheet" type="text/css"
+	href="<%=request.getContextPath()%>/resources/css/style.css">
+
+<link href="http://fonts.googleapis.com/css?family=Raleway"
+	rel="stylesheet" type="text/css">
+<script
+	src="<%=request.getContextPath()%>/resources/libs/jquery.min.v3.1.1.js"></script>
+<script
+	src="<%=request.getContextPath()%>/resources/libs/lightslider.js"></script>
+
+
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:set var="live_entryId" value='${requestScope["live_entryId"]}' />
+<c:set var="partner_id" value='${requestScope["partner_id"]}' />
+
+<c:set var="script_source" value='${requestScope["script_source"]}' />
+<c:set var="ui_conf_id" value='${requestScope["ui_conf_id"]}' />
+
+
+<c:set var="player_id" value='${requestScope["player_id"]}' />
+<script
+	src='${script_source}/p/${partner_id}/sp/${partner_id}00/embedIframeJs/uiconf_id/${ui_conf_id}/partner_id/${partner_id}'>
+
+
+
+			
+			</script>
+<!-- 
+			
+<script
+	src="https://cdnapisec.kaltura.com/p/2199811/sp/219981100/embedIframeJs/uiconf_id/36776161/partner_id/2199811"></script> -->
+
+<script src="<%=request.getContextPath()%>/resources/Js/custom.js"></script>
+
+<script src="<%=request.getContextPath()%>/resources/Js/live.js"></script>
+<script src="<%=request.getContextPath()%>/resources/Js/vod.js"></script>
 </head>
 
 <body class="body">
-<header class="header overhid">
-    <span class="fl pad10"><img src="<%=request.getContextPath()%>/resources/images/tavant_logo.png" height="30px"/></span>
-    <span class="fr pad10"><img src="<%=request.getContextPath()%>/resources/images/tech_connect_logo.png" height="35px" /></span>
-</header>
-<div class="tealive"><div class="fr">
-<img class="pad10 fl" src="<%=request.getContextPath()%>/resources/images/engage_logo.png"/>
- <span class="pad10 fl livetext"><span class="redDot"></span>Live</span></div></div>    
-<div id="gallery" class="playVid pad20 clear" >
-<div id="livestreamVideo">
-<script src="https://cdnapisec.kaltura.com/p/2199811/sp/219981100/embedIframeJs/uiconf_id/36776161/partner_id/2199811?autoembed=true&entry_id=0_uh1npfmj&playerId=kaltura_player_1477377967&cache_st=1477377967&width=560&height=315&flashvars[streamerType]=auto"></script></div>	
-<div id="tavantAdsVideo">
-  
-</div>
-  <img alt="Preview Image 1"
-    src="<%=request.getContextPath()%>/resources/images/thumbs/thumb1.jpg"
-    data-image="<%=request.getContextPath()%>/resources/images/big/image1.jpg"
-    data-description="Preview Image 1 Description">
-  
-  <img alt="Preview Image 2"
-    src="<%=request.getContextPath()%>/resources/images/thumbs/thumb2.jpg"
-    data-image="<%=request.getContextPath()%>/resources/images/big/image2.jpg"
-    data-description="Preview Image 2 Description">
-
-  <img alt="Youtube Video"
-    data-type="youtube"
-    data-videoid="A3PDXmYoF5U"
-    data-description="You can include youtube videos easily!">
-    
-  <img alt="Preview Image 3"
-    src="<%=request.getContextPath()%>/resources/images/thumbs/thumb3.jpg"
-    data-image="<%=request.getContextPath()%>/resources/images/big/image3.jpg"
-    data-description="Preview Image 3 Description">
-
-  <img alt="Vimeo Video"
-    data-type="vimeo"
-    src="http://i.vimeocdn.com/video/447294219_200x150.jpg"
-    data-image="http://i.vimeocdn.com/video/447294219_640.jpg"
-    data-videoid="73234449"
-    data-description="This gallery can also play vimeo videos!">
-  	
-  <img alt="Preview Image 4"
-    src="<%=request.getContextPath()%>/resources/images/thumbs/thumb4.jpg"
-    data-image="<%=request.getContextPath()%>/resources/images/big/image4.jpg"
-    data-description="Preview Image 4 Description">
-  
-  <img alt="Html5 Video"
-    src="<%=request.getContextPath()%>/resources/images/thumbs/html5_video.png"
-    data-type="html5video"
-    data-image="http://video-js.zencoder.com/oceans-clip.png"
-    data-videoogv="http://video-js.zencoder.com/oceans-clip.ogv"
-    data-videowebm="http://video-js.zencoder.com/oceans-clip.webm"
-    data-videomp4="http://video-js.zencoder.com/oceans-clip.mp4"
-	    	 data-description="This is html5 video demo played by mediaelement2 player">
-  
-  <img alt="Preview Image 5"
-    src="<%=request.getContextPath()%>/resources/images/thumbs/thumb1.jpg"
-    data-image="<%=request.getContextPath()%>/resources/images/big/image1.jpg"
-    data-description="Preview Image 5 Description">
-
-  <img alt="Wistia Video"  	
-    src="<%=request.getContextPath()%>/resources/images/thumbs/wistia_video.jpg"
-    data-type="wistia"
-    data-image="<%=request.getContextPath()%>/resources/images/big/wistia_video.jpg"
-    data-videoid="9oedgxuciv"
-    data-description="Hey, the gallery plays Wistia videos too!">
-    
-  <img alt="Preview Image 6"
-    src="<%=request.getContextPath()%>/resources/images/thumbs/thumb2.jpg"
-    data-image="<%=request.getContextPath()%>/resources/images/big/image2.jpg"
-    data-description="Preview Image 6 Description">
+	<header class="header overhid">
+		<span class="fl pad10"><img
+			src="<%=request.getContextPath()%>/resources/images/tavant_logo.png"
+			height="30px" /></span> <span class="fr pad10"><img
+			src="<%=request.getContextPath()%>/resources/images/tech_connect_logo.png"
+			height="35px" /></span>
 
 
-  <img alt="Sound Cloud Track"  	
-    src="<%=request.getContextPath()%>/resources/images/thumbs/sound_cloud.jpg"
-    data-type="soundcloud"
-    data-image="<%=request.getContextPath()%>/resources/images/thumbs/sound_cloud.jpg"
-    data-trackid="8390970"
-    data-description="This gallery can play a soundcloud track">
 
-    
-  <img alt="Preview Image 7"
-    src="<%=request.getContextPath()%>/resources/images/thumbs/thumb3.jpg"
-    data-image="<%=request.getContextPath()%>/resources/images/big/image3.jpg"
-    data-description="Preview Image 7 Description">
 
-    
-  <img alt="Preview Image 8"
-    src="<%=request.getContextPath()%>/resources/images/thumbs/thumb4.jpg"
-    data-image="<%=request.getContextPath()%>/resources/images/big/image4.jpg"
-    data-description="Preview Image 8 Description">
-    
-  <img alt="Preview Image 9"
-    src="<%=request.getContextPath()%>/resources/images/thumbs/thumb1.jpg"
-    data-image="<%=request.getContextPath()%>/resources/images/big/image1.jpg"
-    data-description="Preview Image 9 Description">
-  
-  <img alt="Preview Image 10"
-    src="<%=request.getContextPath()%>/resources/images/thumbs/thumb2.jpg"
-    data-image="<%=request.getContextPath()%>/resources/images/big/image2.jpg"
-    data-description="Preview Image 10 Description">
-    
-  <img alt="Preview Image 11"
-    src="<%=request.getContextPath()%>/resources/images/thumbs/thumb3.jpg"
-    data-image="<%=request.getContextPath()%>/resources/images/big/image3.jpg"
-    data-description="Preview Image 11 Description">
-    
-</div>
 
-<script src="<%=request.getContextPath()%>/resources/Js/custom.js"></script>
+
+
+
+
+
+
+
+	</header>
+	<div class="content-container">
+		<div class="tealive">
+			<div class="fr">
+				<img class="pad10 fl"
+					src="<%=request.getContextPath()%>/resources/images/engage_logo.png" />
+				<span class="pad10 fl livetext"><span class="redDot"></span>Live</span>
+			</div>
+		</div>
+
+	</div>
+	<span class="clear"></span>
+	<c:set var="live_entryId" value='${requestScope["live_entryId"]}' />
+	<c:set var="partnerId" value='${requestScope["partner_id"]}' />
+
+	<c:set var="live_hashmap" value='${requestScope["hashMap_live"]}' />
+
+
+
+	<div class="video-player-test clear" id="player">
+		<div class="close-outer">
+			<button id="vod_close_button" class="closeBtn"
+				onclick="changeMainUrl('${live_hashmap['live_entryId']}','close')"></button>
+				
+		</div>
+
+<script> jQuery("#vod_close_button").hide();</script>
+		<div id="kaltura_player_1477484309" class="player-style"
+			style="height: 610px;"></div>
+
+
+
+
+
+		<script>	
+				kWidget.embed({
+					"targetId" : "kaltura_player_1477484309",
+					"wid" : "_2199811",
+					"uiconf_id" : 36776161,
+					"flashvars" : {
+						"streamerType" : "auto",
+						"autoplay":true
+												
+					},
+					"cache_st" : 1477484309,
+					"entry_id" :"${live_hashmap['live_entryId']}"
+				});
+			</script>
+	</div>
+	<div class="item" id="refresh-after-ajax">
+
+		<ul id="responsive" class="content-slider">
+			<c:forEach items="${list_vod}" var="vod_obj">
+
+				<li><a href="javascript:void(0)"
+					onclick="changeMainUrl('${vod_obj['media_entryId']}', 'vod')"><img
+						alt="Preview Image 1" src="${vod_obj['media_entry_thumbnail']} "
+						data-image="${vod_obj['media_entry_thumbnail']} "
+						data-description="${vod_obj['media_entry_name']} "> </a>
+					<p>${vod_obj['media_entry_name']}</p></li>
+
+
+			</c:forEach>
+
+		</ul>
+
+
+
+	</div>
+
+
+
+
+
+
+
+
+	<div></div>
+
+
+
+	<script>
+		$(document).ready(function() {
+			
+			
+				
+			$('#responsive').lightSlider({
+				item : 7,
+				loop : false,
+				slideMove : 2,
+				slideMargin : 30,
+				easing : 'cubic-bezier(0.25, 0, 0.25, 1)',
+				speed : 600,
+				responsive : [ {
+					breakpoint : 1024,
+					settings : {
+						item : 6,
+						slideMove : 1,
+						slideMargin : 6,
+					}
+				}, {
+					breakpoint : 840,
+					settings : {
+						item : 4,
+						slideMove : 1
+					}
+				}, {
+					breakpoint : 640,
+					settings : {
+						item : 3,
+						slideMove : 1
+					}
+				},
+				{
+					breakpoint : 480,
+					settings : {
+						item : 2,
+						slideMove : 1
+					}
+				},
+				{
+					breakpoint : 320,
+					settings : {
+						item : 1,
+						slideMove : 1
+					}
+				}]
+			});
+		});
+	</script>
+
 </body>
 </html>

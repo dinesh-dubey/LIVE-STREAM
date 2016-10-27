@@ -52,4 +52,15 @@
     <servlet-name>AddContextVar</servlet-name>
     <url-pattern>/AddContextVar</url-pattern>
   </servlet-mapping>
+  
+   <servlet>
+    <servlet-name>vodList</servlet-name>
+    <servlet-class>com.liveStream.servlet.getVodList</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>vodList</servlet-name>
+    <url-pattern>/getVodList</url-pattern>
+  </servlet-mapping>
+  
+  
 </web-app>

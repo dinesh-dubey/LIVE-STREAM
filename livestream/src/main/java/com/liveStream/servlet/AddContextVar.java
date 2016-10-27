@@ -18,7 +18,7 @@ import com.kaltura.client.types.KalturaMediaInfo;
 import com.kaltura.client.types.KalturaMediaListResponse;
 import com.kaltura.client.types.KalturaPlayableEntry;
 import com.liveStream.KalturaSessionGen;
-import com.liveStream.WorkerThread;
+//import com.liveStream.WorkerThread;
 
 /**
  * Servlet implementation class AddContextVar

@@ -16,20 +16,41 @@ import com.kaltura.client.types.KalturaMetadataListResponse;
 public class KalturaSessionGen {
 	static KalturaClient  client=null;
 	
-	public static void main(String... s) throws KalturaApiException
+	/*public static void main(String... s) throws KalturaApiException
 	{
 		
 		
 		list();
 	}
+	*/
+	static LoadProperty propertyLoad=null;
+	{
+		
+		
+		if(propertyLoad==null)
+			 propertyLoad=new LoadProperty();
+			
+		
+	}
+	 public KalturaSessionGen()
+	{
+		
+		
+		
+	}
+	
+	
 	
 	public  static KalturaClient getClient()
 	{
-		String secret = "cb70c153f1825b0e9cd518fee32b763b" ; // Secret Id
-		String userId = "fb94f1b9fc0bc785d49407d654a32fde"; //add user id
-		int partnerId = 2199811; //add user id
+	
 		
-		String serviceUrl="http://www.kaltura.com/";
+		
+		String secret = propertyLoad.getProperty("ADMIN_SECRET");//"cb70c153f1825b0e9cd518fee32b763b" ; // Secret Id
+		String userId = propertyLoad.getProperty("USER_SECRET");//"fb94f1b9fc0bc785d49407d654a32fde"; //add user id
+		int partnerId =Integer.parseInt(propertyLoad.getProperty("PARTNER_ID"));//2199811; //add user id
+		
+		String serviceUrl=propertyLoad.getProperty("SERVICE_URL");//"http://www.kaltura.com/";
 		KalturaSessionType type = KalturaSessionType.ADMIN;
 		/* It is enum defined in kaltura api . It could if either KalturaSessionType.USER or KalturaSessionType.ADMIN */
 		//int partnerId = 100;
@@ -66,7 +87,7 @@ public class KalturaSessionGen {
 	}
 	
 	
-	static void list() throws KalturaApiException {
+	/*static void list() throws KalturaApiException {
 
 		KalturaMediaListResponse list =  getClient().getMediaService().list();
 		if (list.totalCount > 0) {
@@ -80,29 +101,7 @@ public class KalturaSessionGen {
 	
 		
 		String entryId="0_oosnpuph";
-		/*for live entry
-		KalturaLiveStreamEntry liveEntry=getClient().getLiveStreamService().get(entryId);
-		String dataUrl=liveEntry.streamUrl;
-		
-		ArrayList urlObj=getClient().getLiveStreamService().get(entryId).liveStreamConfigurations;
-		
-		System.out.println("Stream url:");
-		
-		KalturaLiveStreamConfiguration obj[]=new KalturaLiveStreamConfiguration[urlObj.size()];
-		
-		System.out.println("==> For Loop Example.");
-		for (int i = 0; i < urlObj.size(); i++) {
-			 obj[i]=(KalturaLiveStreamConfiguration) urlObj.get(i);
-			
-			
-			
-		}
- 
-		System.out.println(	obj[1].streamName+" "+obj[1].publishUrl);
-		
-		
-		System.out.println(liveEntry.name);
-		*/
+	
 		 entryId="1_6a0qjqkg";
 		
 		KalturaMediaEntry mediaEntry = getClient().getMediaService().get(entryId);
@@ -111,6 +110,6 @@ public class KalturaSessionGen {
 		System.out.print(mediaEntry.dataUrl);
 		
 		
-}
+}*/
 	
 }

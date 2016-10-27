@@ -21,8 +21,17 @@ function invokeTavantAds(){
 	      datatype:"json",
 	      success:function(response) {
 	    	  var kalturaEntryId = response.entryId;
+	    	  var live_entry_id=response.live_entry_id;
+	    	  
 	    	  var time=response.time;
+	    	  var time_start=response.timediff;
+		    	
 	    	  console.log(entryId);
+	    	  console.log("time_start"+time_start);
+	    	  
+	    	 
+	    	  
+	    	  
 	    	  
 	    	  if(kalturaEntryId !='' && kalturaEntryId!=entryId ){
 	    		  clearTimeout(timeOutVar);
@@ -35,23 +44,38 @@ function invokeTavantAds(){
 	    		  
 	    		  console.log(time);
 	    		  
-	    		  //var kalturaScript = " <script src=\"https://cdnapisec.kaltura.com/p/2199811/sp/219981100/embedIframeJs/uiconf_id/36838491/partner_id/2199811?autoembed=true&entry_id="+kalturaEntryId+"&playerId=kaltura_player_1477208074&cache_st=1477208074&width=560&height=395&flashvars[streamerType]=auto\"></script>";
-	    		  var kalturaScript = "<iframe src=\"http://www.kaltura.com/p/2199811/sp/219981100/embedIframeJs/uiconf_id/36776161/partner_id/2199811?iframeembed=true&playerId=kaltura_player_1477377967&entry_id="+kalturaEntryId+"&flashvars[autoPlay]=true&flashvars[share.plugin]=true width=\"400\" height=\"330\" allowfullscreen webkitallowfullscreen mozAllowFullScreen frameborder=\"0\"></iframe>";
-	    		  jQuery("#tavantAdsVideo").html('');
-	    		  jQuery("#tavantAdsVideo").html(kalturaScript);
-	    		  jQuery("#livestreamVideo").hide();
-	    		  jQuery("#tavantAdsVideo").show();
+	    		
+var delay_for_live=time-time_start;
+
+console.log("delay_for_live"+delay_for_live);
+
+	    		  var current= $("#player").attr("data-current_play_type");
+
+	    		  console.log('  current_play_type'+current)	;
+	    			 if(current!='vod')
+	    			 { playAdd(kalturaEntryId,'ad',time_start);
+	    			 timeOutVar = setTimeout(function(){
+                        
+	    				 changeMainUrl(live_entry_id,'live');
+	    				 
+                       }, delay_for_live*1000);
+
+	    			 
+	    			 }
 	    		  
-	    		  timeOutVar = setTimeout(function(){
-	    			  jQuery("#livestreamVideo").show();
-		    		  jQuery("#tavantAdsVideo").hide();
-		    		  console.log("intimeout");
-	    			}, time*1000);
+	    		  
+	    		  
+	    	
 	    	  }
+	    	  
+	    	  
+	    	  
+	    	  
 	      }
 	    });
 	   
 	   
-	
+	   
+	    	  
 	
 }
