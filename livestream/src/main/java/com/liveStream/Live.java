@@ -71,7 +71,8 @@ public class Live extends HttpServlet {
 
 			KalturaUtil util = new KalturaUtil();
 
-			ArrayList<KalturaBaseEntry> list = util.retrieveMediaMetaData();
+		//ArrayList<KalturaBaseEntry> list = util.retrieveMediaMetaData();
+			ArrayList<KalturaBaseEntry> list = util.retrieveTaggedMediaMetaData();
 			java.util.Iterator<KalturaBaseEntry> i = list.iterator();
 			String media_entry_name = null;
 			String media_entry_thumbnail = null;
@@ -118,6 +119,8 @@ request.setAttribute("script_source", property.getProperty("SCRIPT_SOURCE"));
 
 
 
+request.setAttribute("live_entryId", property.getProperty("LIVE_ENTRY_ID"));
+
 request.setAttribute("ui_conf_id", property.getProperty("UI_CONF_ID"));
 
 
@@ -132,7 +135,7 @@ request.setAttribute("ui_conf_id", property.getProperty("UI_CONF_ID"));
 			// response);
 
 
-if(request.getAttribute("list_vod")!=null)
+ if(request.getAttribute("list_vod")!=null)
 	list_Vod=(ArrayList<HashMap<String, String>>) request.getAttribute("list_vod");
 	
 	

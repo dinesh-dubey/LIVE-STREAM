@@ -20,6 +20,27 @@
 
 
 
+
+
+<script src="<%=request.getContextPath()%>/resources/Js/config.js"></script>
+
+
+
+<script src="<%=request.getContextPath()%>/resources/Js/ox.ajast.js"></script>
+<script src="<%=request.getContextPath()%>/resources/Js/webtoolkit.md5.js"></script>
+<script src="<%=request.getContextPath()%>/resources/Js/KalturaClientBase.js"></script>
+<script src="<%=request.getContextPath()%>/resources/Js/KalturaTypes.js"></script>
+<script src="<%=request.getContextPath()%>/resources/Js/KalturaVO.js"></script>
+<script src="<%=request.getContextPath()%>/resources/Js/KalturaServices.js"></script>
+<script src="<%=request.getContextPath()%>/resources/Js/KalturaClient.js"></script>
+
+
+
+
+
+
+
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="live_entryId" value='${requestScope["live_entryId"]}' />
 <c:set var="partner_id" value='${requestScope["partner_id"]}' />
@@ -36,6 +57,13 @@
 
 			
 			</script>
+			
+			
+	<!-- 		<script
+	src="https://cdnapisec.kaltura.com/p/2199811/sp/219981100/embedIframeJs/uiconf_id/36776161/partner_id/2199811"></script>  -->
+	
+	
+	
 <!-- 
 			
 <script
@@ -46,6 +74,25 @@
 <script src="<%=request.getContextPath()%>/resources/Js/live.js"></script>
 <script src="<%=request.getContextPath()%>/resources/Js/vod.js"></script>
 </head>
+
+
+<script>
+
+var id = '${requestScope["live_entryId"]}';
+
+var protocol = 'http';
+
+client.liveStream.isLive(function(success, results) {
+  if (!success || (results && results.code && results.message)) {
+    console.log('Kaltura Error', success, results);
+  } else {
+    console.log('Kaltura Result', results);
+  }
+},
+id,
+protocol);
+
+</script>
 
 <body class="body">
 	<header class="header overhid">
@@ -120,11 +167,13 @@
 		<ul id="responsive" class="content-slider">
 			<c:forEach items="${list_vod}" var="vod_obj">
 
-				<li><a href="javascript:void(0)"
+				<li><a href="javascript:void(0)" class="thumbnail"
 					onclick="changeMainUrl('${vod_obj['media_entryId']}', 'vod')"><img
 						alt="Preview Image 1" src="${vod_obj['media_entry_thumbnail']} "
 						data-image="${vod_obj['media_entry_thumbnail']} "
-						data-description="${vod_obj['media_entry_name']} "> </a>
+						data-description="${vod_obj['media_entry_name']} ">
+						<small></small>
+						 </a>
 					<p>${vod_obj['media_entry_name']}</p></li>
 
 
@@ -195,6 +244,43 @@
 				}]
 			});
 		});
+		
+		
+		
+		var config = new KalturaConfiguration(${partner_id});
+		var client = new KalturaClient(config);
+		
+	  
+	  
+	  
+	  
+  client.session.start(function(success, ks) {
+    if (!success || (ks.code && ks.message)) {
+      console.log('Error starting session', success, ks);
+      $('#ErrorMessage').text(ks.message || 'Unknown Error').show();
+    } else {
+      window.ks = ks;
+      client.setKs(ks);
+      var id = '${requestScope["live_entryId"]}';
+
+		var protocol = 'http';
+
+		client.liveStream.isLive(function(success, results) {
+		  if (!success || (results && results.code && results.message)) {
+		    console.log('Kaltura Error', success, results);
+		  } else {
+		    console.log('Kaltura Result', results);
+		  }
+		},
+		id,
+		protocol);
+		}
+	  
+	  }, "cb70c153f1825b0e9cd518fee32b763b",
+	  "fb94f1b9fc0bc785d49407d654a32fde",
+	  KalturaSessionType.ADMIN,
+	  '2199811');
+  
 	</script>
 
 </body>

@@ -22,7 +22,16 @@ public class KalturaUtil {
 
 	static Logger log = Logger.getLogger(KalturaUtil.class.getName());
 
-	public static LoadProperty propertyLoad=null;
+
+	static public  LoadProperty propertyLoad=null;
+	
+	{
+		if(propertyLoad==null)
+			 propertyLoad=new LoadProperty();
+			
+		
+		
+	}
 	
 	public KalturaUtil()
 	
@@ -83,7 +92,7 @@ public class KalturaUtil {
 		if (list.totalCount > 0) {
 			System.out.println("The account contains " + list.totalCount + " entries.");
 			for (KalturaMediaEntry entry : list.objects) {
-				if(entry.tags.equalsIgnoreCase(propertyLoad.getProperty("TAG_NAME_FOR_VOD")))
+				if(null != entry.tags && entry.tags.equalsIgnoreCase(propertyLoad.getProperty("TAG_NAME_FOR_VOD")))
 				metaData_media.add((KalturaBaseEntry)entry);
 			
 			
@@ -121,7 +130,6 @@ public class KalturaUtil {
 			for (KalturaMediaEntry entry : list.objects) {
 			//	if(entry.tags.equalsIgnoreCase(propertyLoad.getProperty("TAG_NAME")))
 				metaData_media.add((KalturaBaseEntry)entry);
-			
 			
 			
 			}

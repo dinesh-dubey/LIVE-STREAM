@@ -18,7 +18,6 @@ import com.kaltura.client.types.KalturaMediaListResponse;
 import com.kaltura.client.types.KalturaMetadata;
 import com.kaltura.client.types.KalturaMetadataListResponse;
 import com.liveStream.KalturaSessionGen;
-import com.liveStream.KalturaUtil;
 
 /**
  * Servlet implementation class FetchTagVideos
@@ -51,23 +50,18 @@ public class FetchTagVideos extends HttpServlet {
 		// TODO Auto-generated method stub
 	
 	
-		KalturaSessionGen ksg=new KalturaSessionGen();
 
 		Map metaData_media=new HashMap<>();
 		KalturaMediaListResponse list;
-		KalturaUtil ku=new KalturaUtil();
 		
 		 
 		
 		try {
-			
-			
 			list = KalturaSessionGen.getClient().getMediaService().list();
 			if (list.totalCount > 0) {
 				System.out.println("The account contains " + list.totalCount + " entries.");
 				for (KalturaBaseEntry entry : list.objects) {
-					if(null != entry.tags &&entry.tags.equalsIgnoreCase(ku.propertyLoad
-							.getProperty("TAG_NAME_FOR_ADS"))){
+					if(null != entry.tags &&entry.tags.equals("tavant")){
 					metaData_media.put(entry.name,entry.id);
 					System.out.println("\t \"" + entry.name + "\""+" "+entry.tags + "\""+" "+entry.id);
 				

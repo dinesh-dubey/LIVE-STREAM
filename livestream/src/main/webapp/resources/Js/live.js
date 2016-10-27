@@ -1,11 +1,17 @@
 
 var entryId;
 
+$(document).ready(function() {
+	$(".thumbnail").click(function () {
+	    $(".thumbnail").removeClass("active");
+	    $(this).addClass("active");        
+	});
+	});
 function changeMainUrl( xyz, current_play_type)
 {
-	
-	
-	
+	/*$("#responsive li a").removeClass('active');
+	$(this).addClass("active");
+	console.log(this);*/
 	
 	 entryId=xyz;
 	 
@@ -30,7 +36,7 @@ function changeMainUrl( xyz, current_play_type)
 	 
 	 
 	
- if(current_play_type=='close')
+ if(current_play_type!='vod')
 	 jQuery("#vod_close_button").hide();
 	
  
@@ -69,8 +75,8 @@ function playAdd( xyz, current_play_type, time_start)
 					'streamerType' : 'auto',
 						'autoPlay': true,
 						'mediaProxy.mediaPlayFrom' : time_start,
+						'controlBarContainer.plugin': false
 						
-						'externalInterfaceDisabled' : false 
 				},
 				"cache_st" : 1477484309,
 				"entry_id" : entryId
