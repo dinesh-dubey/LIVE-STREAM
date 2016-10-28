@@ -92,7 +92,7 @@ public class KalturaUtil {
 		if (list.totalCount > 0) {
 			System.out.println("The account contains " + list.totalCount + " entries.");
 			for (KalturaMediaEntry entry : list.objects) {
-				if(null != entry.tags && entry.tags.equalsIgnoreCase(propertyLoad.getProperty("TAG_NAME_FOR_VOD")))
+				if(null == entry.tags )
 				metaData_media.add((KalturaBaseEntry)entry);
 			
 			

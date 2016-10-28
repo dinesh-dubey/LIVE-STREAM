@@ -103,6 +103,7 @@ h3{
 	width:100%;
 	min-height: 167px;
 	opacity:0.5;
+	height:167px;
 }
 .content-slider li a.active img{
 	opacity:1;
